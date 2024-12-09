@@ -54,9 +54,10 @@ dropArea.ondrop = e => {
 // check the file type
 function typeValidation(type) {
 	var splitType = type.split('/')[0]
-	if (type == 'application/pdf' || splitType == 'image' || splitType == 'video') {
-		return true
-	}
+	console.log(type)
+	// if (type == 'application/pdf' || splitType == 'image' || splitType == 'video') {
+	return true
+	// }
 }
 
 // upload file function
