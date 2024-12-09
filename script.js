@@ -73,6 +73,7 @@ function uploadFile(file) {
                 <div class="name">${file.name}</div>
                 <span>0%</span>
             </div>
+            <div class="file-url"></div>
             <div class="file-progress">
                 <span></span>
             </div>
@@ -90,7 +91,9 @@ function uploadFile(file) {
 	http.onload = () => {
 		li.classList.add('complete')
 		li.classList.remove('in-prog')
+		li.querySelector('.file-url').innerHTML = http.responseText
 	}
+
 	http.upload.onprogress = e => {
 		var percent_complete = (e.loaded / e.total) * 100
 		li.querySelectorAll('span')[0].innerHTML = Math.round(percent_complete) + '%'
@@ -98,8 +101,8 @@ function uploadFile(file) {
 	}
 	http.open('POST', 'sender.php', true)
 	http.send(data)
-    li.querySelector('.cross').onclick = () => http.abort()
-    http.onabort = () => li.remove()
+	li.querySelector('.cross').onclick = () => http.abort()
+	http.onabort = () => li.remove()
 }
 
 // find icon for file
